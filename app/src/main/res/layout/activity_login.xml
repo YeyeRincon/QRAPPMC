@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context=".activity.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="323dp"
+        android:layout_height="245dp"
+        android:contentDescription="@string/todo"
+        android:src="@mipmap/ic_logo"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="33dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="334dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etusuario"
+            android:layout_width="305dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:hint="@string/valetemail" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="334dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.792"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/ic_baseline_vpn_key_24"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etpassword"
+            android:layout_width="302dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:hint="@string/valetpassword"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnlogin"
+        android:layout_width="223dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/san_francisco"
+        android:text="Acceder"
+        android:textAlignment="viewEnd"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">QR</string>
+    <string name="valetemail">Usuario</string>
+    <string name="valetpassword">Contraseña</string>
+    <string name="valbtnlogin">Acceder</string>
+    <string name="todo">TODO</string>
+    <string name="seleccione_un_patio">Seleccione un patio:</string>
+    <string name="informacion_lavado">INFORMACIÓN DE LAVADO</string>
+    <string name="placa">Placa:</string>
+    <string name="codigotm">CódigoTM:</string>
+    <string name="datetimelavado">Fecha y Hora del Lavado</string>
+</resources>
