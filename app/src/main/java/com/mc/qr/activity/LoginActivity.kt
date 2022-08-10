@@ -1,5 +1,6 @@
 package com.mc.qr.activity
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,22 +8,26 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.mc.qr.R
 import com.mc.qr.databinding.ActivityLoginBinding
 import com.mc.qr.model.AuthViewModel
 import com.mc.qr.retrofit.response.ResponseLogin
+import kotlinx.coroutines.launch
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var authViewModel: AuthViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_login)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         authViewModel = ViewModelProvider(this)
             .get(AuthViewModel::class.java)
         binding.btnlogin.setOnClickListener(this)
@@ -36,14 +41,25 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         if (responseLogin.mensaje != "Error de autenticación: usuario o contraseña incorrecto!") {
 
+           lifecycleScope.launch {
+               authViewModel.responseLogin.value?.token
+               authViewModel.responseLogin.value?.id
+           }
+
+
 
             val token: String = responseLogin.token
             val nombre: String = responseLogin.nombre
+            val ad_user: Long = responseLogin.id
 
+
+            Thread.sleep(2_000)
             val intent = Intent(this, DashboardActivity::class.java)
             intent.putExtra("nombreusuario", nombre)
+            intent.putExtra("token", token)
+            intent.putExtra("ad_user", ad_user)
             startActivity(intent)
-            //  startActivity(Intent(applicationContext, DashboardActivity::class.java))
+
         } else {
             // startActivity(Intent(applicationContext, LoginActivity::class.java))
 
@@ -55,6 +71,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
         binding.btnlogin.isEnabled = true
     }
+
+
+
 
     override fun onClick(p0: View) {
         when (p0.id) {

@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 object DataPrintCliente {
 
-    private  var okHttpClient=OkHttpClient.Builder()
+    private var okHttpClient=OkHttpClient.Builder()
         .connectTimeout(1,TimeUnit.MINUTES)
         .readTimeout(30,TimeUnit.MINUTES)
         .writeTimeout(15,TimeUnit.MINUTES)
