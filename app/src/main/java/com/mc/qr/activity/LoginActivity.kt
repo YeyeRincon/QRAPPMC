@@ -1,6 +1,5 @@
 package com.mc.qr.activity
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +21,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var authViewModel: AuthViewModel
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_login)
@@ -38,7 +38,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun obtenerDatosLogin(responseLogin: ResponseLogin) {
-
         if (responseLogin.mensaje != "Error de autenticación: usuario o contraseña incorrecto!") {
 
            lifecycleScope.launch {
@@ -46,14 +45,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                authViewModel.responseLogin.value?.id
            }
 
-
-
             val token: String = responseLogin.token
             val nombre: String = responseLogin.nombre
             val ad_user: Long = responseLogin.id
 
 
-            Thread.sleep(2_000)
             val intent = Intent(this, DashboardActivity::class.java)
             intent.putExtra("nombreusuario", nombre)
             intent.putExtra("token", token)

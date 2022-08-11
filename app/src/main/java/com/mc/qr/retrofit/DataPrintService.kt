@@ -13,13 +13,13 @@ interface DataPrintService {
     @POST("/api/login")
     fun login(@Body requestLogin: RequestLogin): Call<ResponseLogin>
 
-   @Headers("Content-Type:application/json; charset=UTF-8")
-   @GET("/api/patios/")
-   fun consupatios(@Body requestPatios: RequestPatios): Call<ResponsePatios>
-
+    @Headers("Content-Type:application/json; charset=UTF-8")
+    @GET("/api/patios/")
+    fun consupatios(@Body requestPatios: RequestPatios): Call<ResponsePatios>
 
     // get all users
-  //  @GET("/api/patios/")
- //   fun getSpaces(
-   //     @Header("Authorization") token: String = "$token": Call<ResponsePatios>
+    //  @GET("/api/patios/")
+    //   fun consupatios(
+    //     @Header("Authorization") token: String = "$token": Call<ResponsePatios>
+
 }
