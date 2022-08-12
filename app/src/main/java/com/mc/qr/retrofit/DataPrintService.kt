@@ -14,8 +14,8 @@ interface DataPrintService {
     fun login(@Body requestLogin: RequestLogin): Call<ResponseLogin>
 
     @Headers("Content-Type:application/json; charset=UTF-8")
-    @GET("/api/patios/")
-    fun consupatios(@Body requestPatios: RequestPatios): Call<ResponsePatios>
+    @GET("/api/patios/{id}")
+    fun consupatios(@Path("id") requestPatios: RequestPatios): Call<ResponsePatios>
 
     // get all users
     //  @GET("/api/patios/")

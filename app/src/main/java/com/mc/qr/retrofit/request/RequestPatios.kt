@@ -1,4 +1,5 @@
 package com.mc.qr.retrofit.request
 
-class RequestPatios {
-}
+data class RequestPatios(
+    var iduser:Int
+)

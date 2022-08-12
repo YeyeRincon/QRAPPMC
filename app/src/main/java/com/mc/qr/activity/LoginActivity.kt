@@ -7,20 +7,23 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.mc.qr.R
+import com.mc.qr.configuration.Constantes
+import com.mc.qr.configuration.HeaderInterceptor
 import com.mc.qr.databinding.ActivityLoginBinding
 import com.mc.qr.model.AuthViewModel
+import com.mc.qr.model.PatiosViewModel
 import com.mc.qr.retrofit.response.ResponseLogin
-import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var authViewModel: AuthViewModel
-
-
+    private lateinit var PatiosViewModel:PatiosViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,14 +43,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun obtenerDatosLogin(responseLogin: ResponseLogin) {
         if (responseLogin.mensaje != "Error de autenticación: usuario o contraseña incorrecto!") {
 
-           lifecycleScope.launch {
-               authViewModel.responseLogin.value?.token
-               authViewModel.responseLogin.value?.id
-           }
-
             val token: String = responseLogin.token
             val nombre: String = responseLogin.nombre
             val ad_user: Long = responseLogin.id
+
+          //  PatiosViewModel.patios(
+            //    ad_user.toInt()
+            //)
 
 
             val intent = Intent(this, DashboardActivity::class.java)
@@ -111,6 +113,20 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 .setContentText("Usuario y/o contraseña incorrectos")
                 .show()
         }
+    }
+
+    private fun getRetrofit(): Retrofit.Builder {
+        return Retrofit.Builder()
+            .baseUrl(Constantes().Data_Print_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(getClient())
+
+    }
+
+    private fun getClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(HeaderInterceptor())
+            .build()
     }
 
 
